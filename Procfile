@@ -1,0 +1,1 @@
+web: rake run_app
