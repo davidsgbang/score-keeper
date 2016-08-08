@@ -1,0 +1,143 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.1",
+        "title": "Score Keeper",
+        "description": "A Simple API that computes and stores events for sports.",
+        "license": {
+            "name": "The MIT License (MIT)",
+            "url": "https://github.com/seonggbang/score-keeper/blob/master/LICENSE"
+        }
+    },
+    "host": "davids-score-keeper.herokuapp.com",
+    "schemes": [
+        "https"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/scores": {
+            "get": {
+                "summary": "Game Scores",
+                "description": "Returns scores from completed games",
+                "parameters": [
+                    {
+                        "name": "teamName",
+                        "in": "query",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "name": "teamId",
+                        "in": "query",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "required": false,
+                        "type": "date-time"
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "required": false,
+                        "type": "date-time"
+                    },
+                    {
+                        "name": "numScores",
+                        "in": "query",
+                        "required": false,
+                        "type": "int32"
+                    },
+                    {
+                        "name": "sport",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return object with score",
+                        "headers": {
+                            "currentScores": {
+                                "description": "Current Game Scores",
+                                "type": "array"
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "home": "New England Revolution",
+                                "location": "Gillette Stadium",
+                                "away": "Chicago Fire",
+                                "score": "1-3",
+                                "date": "2012-04-23T00:00:00.000Z",
+                                "sport": "soccer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/currentScores": {
+            "get": {
+                "summary": "Currently Running Game Scores",
+                "description": "Returns scores from all currently running games",
+                "parameters": [
+                    {
+                        "name": "teamName",
+                        "in": "query",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "name": "teamId",
+                        "in": "query",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "name": "numScores",
+                        "in": "query",
+                        "type": "string",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return object with score",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "score": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        },
+                        "headers": {
+                            "currentScores": {
+                                "description": "Current Game Scores",
+                                "type": "array"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "home": "New England Revolution",
+                                    "location": "Gillette Stadium",
+                                    "away": "Chicago Fire",
+                                    "score": "1-3",
+                                    "sport": "soccer"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
