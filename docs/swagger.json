@@ -66,9 +66,9 @@
                     "200": {
                         "description": "Return object with score",
                         "headers": {
-                            "currentScores": {
-                                "description": "Current Game Scores",
-                                "type": "array"
+                            "numScores": {
+                                "description": "Number of Scores Returned",
+                                "type": "integer"
                             }
                         },
                         "examples": {
@@ -123,9 +123,9 @@
                             }
                         },
                         "headers": {
-                            "currentScores": {
-                                "description": "Current Game Scores",
-                                "type": "array"
+                            "numScores": {
+                                "description": "Number of Scores Returned",
+                                "type": "integer"
                             }
                         },
                         "examples": {
