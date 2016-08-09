@@ -38,19 +38,22 @@
                         "name": "start",
                         "in": "query",
                         "required": false,
-                        "type": "date-time"
+                        "type": "string",
+                        "format": "date-time"
                     },
                     {
                         "name": "end",
                         "in": "query",
                         "required": false,
-                        "type": "date-time"
+                        "type": "string",
+                        "format": "date-time"
                     },
                     {
                         "name": "numScores",
                         "in": "query",
                         "required": false,
-                        "type": "int32"
+                        "type": "integer",
+                        "format": "int32"
                     },
                     {
                         "name": "sport",
@@ -102,7 +105,8 @@
                     {
                         "name": "numScores",
                         "in": "query",
-                        "type": "string",
+                        "type": "integer",
+                        "format": "int32",
                         "required": false
                     }
                 ],
