@@ -192,6 +192,125 @@
                     }
                 }
             }
+        },
+        "/info": {
+            "get": {
+                "summary": "Team Info",
+                "description": "Returns Info About Teams",
+                "parameters": [
+                    {
+                        "name": "teamName",
+                        "in": "query",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "name": "teamId",
+                        "in": "query",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "name": "location",
+                        "in": "query",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
+                        "name": "sport",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return object with Team Info",
+                        "headers": {
+                            "numScores": {
+                                "description": "Number of Teams Returned",
+                                "type": "integer"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "required": [
+                                    "name",
+                                    "id",
+                                    "location",
+                                    "homeField"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "location": {
+                                        "type": "string"
+                                    },
+                                    "homeField": {
+                                        "type": "string"
+                                    },
+                                    "sport": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "name": "New England Revolution",
+                                "id": "8612403b-f74e-488b-9799-d6813dd0ba93",
+                                "location": "New England",
+                                "homeField": "Gillette Stadium",
+                                "sport": "soccer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/info/{teamName}": {
+            "get": {
+                "summary": "Gets Metadata About a team",
+                "description": "Returns a single team for its team name",
+                "parameters": [
+                    {
+                        "name": "teamName",
+                        "in": "path",
+                        "required": true,
+                        "description": "The team's name",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Team Info",
+                        "schema": {
+                            "required": [
+                                "teamName"
+                            ],
+                            "properties": {
+                                "teamName": {
+                                    "type": "string"
+                                },
+                                "location": {
+                                    "type": "string"
+                                },
+                                "homeField": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "The Team does not exists."
+                    }
+                }
+            }
         }
     }
 }
